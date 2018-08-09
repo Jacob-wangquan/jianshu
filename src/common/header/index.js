@@ -7,6 +7,7 @@ import {
 
 import {actionCreators}  from './store';
 import { toJS } from 'immutable';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
     getListArea() {
@@ -50,37 +51,39 @@ class Header extends Component {
         const {focused, handleInputFocus, handleInputBlur, list} = this.props;
         return (
             <HeaderWrapper>
-            <Logo  />
-            <Nav>
-                <NavItem className="left active">首页</NavItem>
-                <NavItem className="left">下载APP</NavItem>
-                <NavItem className="right">登录</NavItem>
-                <NavItem className="right">
-                    <i className="iconfont">&#xe636;</i>
-                </NavItem>
-                <SearchWrapper>
-                    <CSSTransition
-                        in={focused}
-                        timeout={200}
-                        classNames="slide"
-                    >
-                        <NavSearch 
-                        className={focused ? 'focused' : ''}
-                        onFocus={() => handleInputFocus(list)}
-                        onBlur={handleInputBlur}
-                        ></NavSearch>
-                    </CSSTransition>
-                
-                    <i className={focused ? 'focused iconfont zoom' : 'iconfont zoom'}>&#xe6dd;</i>
+                <Link to='/'>
+                    <Logo  />
+                </Link>
+                <Nav>
+                    <NavItem className="left active">首页</NavItem>
+                    <NavItem className="left">下载APP</NavItem>
+                    <NavItem className="right">登录</NavItem>
+                    <NavItem className="right">
+                        <i className="iconfont">&#xe636;</i>
+                    </NavItem>
+                    <SearchWrapper>
+                        <CSSTransition
+                            in={focused}
+                            timeout={200}
+                            classNames="slide"
+                        >
+                            <NavSearch 
+                            className={focused ? 'focused' : ''}
+                            onFocus={() => handleInputFocus(list)}
+                            onBlur={handleInputBlur}
+                            ></NavSearch>
+                        </CSSTransition>
+                    
+                        <i className={focused ? 'focused iconfont zoom' : 'iconfont zoom'}>&#xe6dd;</i>
 
-                    {this.getListArea()}
-                </SearchWrapper>
-            
-            </Nav>
-            <Addition>
-                <Button className="writing"><i className="iconfont">&#xe610;</i>写文章</Button>
-                <Button className="reg">注册</Button>                   
-            </Addition>
+                        {this.getListArea()}
+                    </SearchWrapper>
+                
+                </Nav>
+                <Addition>
+                    <Button className="writing"><i className="iconfont">&#xe610;</i>写文章</Button>
+                    <Button className="reg">注册</Button>                   
+                </Addition>
         </HeaderWrapper>
         )
     }
